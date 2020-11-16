@@ -5,6 +5,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 import moment from "moment";
+import axios from "axios";
 const Request = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -24,16 +25,45 @@ const Request = () => {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   }
-  const isOutsideRange = date => {
+  const isOutsideRange = (date) => {
     const now = moment();
-    return !moment(date)
-             .isBetween(now.subtract(5, 'days'), now, undefined, '[]');
+    return !moment(date).isBetween(
+      now.subtract(5, "days"),
+      now,
+      undefined,
+      "[]"
+    );
     // [] - match is inclusive
-}
-   const submit = (e)=>{
-     e.preventDefault();
-    //  if()
-   }
+  };
+
+  const reset = ()=>{
+    setFirstName("");
+    setLastName("");
+    setEmployeeId("");
+    setMachineNumber("");
+    setMessage("");
+    setStartDate(new Date())
+    setEndDate(new Date())
+  }
+  const submit = async (e) => {
+    console.log("submit")
+    e.preventDefault();
+    await axios.post("http://localhost:7000/approvals", {
+      firstName,
+      lastName,
+      employeeId,
+      machineNumber,
+      message,
+      startDate,
+      endDate,
+    }).then((data)=>{
+        console.log(data);
+        alert("Your Request has been sent to the Admin");
+        reset();
+    }).catch((err)=>{
+        console.log(err)
+    });
+  };
   return (
     <div className={style.request}>
       <div className={style.header}>
@@ -50,7 +80,7 @@ const Request = () => {
             align="center"
             size="small"
             value={firstName}
-            onChange={(e)=>setFirstName(e.target.value)}
+            onChange={(e) => setFirstName(e.target.value)}
             required
             className={style.input}
             InputLabelProps={{
@@ -63,7 +93,7 @@ const Request = () => {
             type="text"
             value={lastName}
             size="small"
-            onChange={(e)=>setLastName(e.target.value)}
+            onChange={(e) => setLastName(e.target.value)}
             required
             className={style.input}
             InputLabelProps={{
@@ -76,7 +106,7 @@ const Request = () => {
             type="text"
             value={employeeId}
             size="small"
-            onChange={(e)=>setEmployeeId(e.target.value)}
+            onChange={(e) => setEmployeeId(e.target.value)}
             required
             className={style.input}
             InputLabelProps={{
@@ -89,7 +119,7 @@ const Request = () => {
             type="text"
             value={machineNumber}
             size="small"
-            onChange={(e)=>setMachineNumber(e.target.value)}
+            onChange={(e) => setMachineNumber(e.target.value)}
             required
             className={style.input}
             InputLabelProps={{
@@ -97,7 +127,7 @@ const Request = () => {
             }}
           />
           <DateRangePicker
-          required
+            required
             ranges={[selectionRange]}
             onChange={handleSelect}
             minDate={moment().toDate()}
@@ -114,7 +144,7 @@ const Request = () => {
             value={message}
             multiline
             rows="6"
-            onChange={(e)=>setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
             required
             InputLabelProps={{
               shrink: true,

@@ -1,0 +1,10 @@
+.home{
+display: flex;
+flex-direction: column;
+}
+
+.home button{
+    width: fit-content;
+    text-transform: initial;
+    outline: none;
+}

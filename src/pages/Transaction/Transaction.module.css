@@ -1,0 +1,7 @@
+.transaction{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgb(243, 243, 243)212, 228, 228);
+}

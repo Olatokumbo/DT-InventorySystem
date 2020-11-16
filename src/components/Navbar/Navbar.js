@@ -21,6 +21,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import PeopleIcon from "@material-ui/icons/People";
 import FolderIcon from "@material-ui/icons/Folder";
 import SettingsIcon from "@material-ui/icons/Settings";
+import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
 // import { connect } from "react-redux";
 // import * as actionCreator from "../../store/actions";
@@ -169,7 +170,15 @@ const Navbar = (props) => {
               <ListItemText primary={"Home"} />
             </ListItem>
           </Link>
-          <Link to="/products">
+          <Link to="/approvals">
+            <ListItem button>
+              <ListItemIcon>
+                <InfoIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Approvals"} />
+            </ListItem>
+          </Link>
+          <Link to="/transaction">
             <ListItem button>
               <ListItemIcon>
                 <FolderIcon />
