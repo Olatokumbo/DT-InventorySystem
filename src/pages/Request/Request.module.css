@@ -1,0 +1,30 @@
+.request{
+    height: 100vh;
+    padding: 2rem 1rem;
+    background-color: #7671ef;
+    background-position: center;
+    background-size: cover;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+.request form{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.877);
+    padding: 1.5rem;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.input{
+    margin: 0.5rem !important;
+    width: 100% !important;
+}
+
+.submitBtn{
+    width: fit-content !important;
+}
