@@ -3,6 +3,7 @@
   height: 100vh;
   background-color: #7671ef;
   padding: 2rem 1rem;
+  overflow: auto;
 }
 .signinContainer {
   display: flex;

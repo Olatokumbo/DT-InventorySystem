@@ -26,6 +26,7 @@ const Signin = ({ signin, error, reset }) => {
               variant="outlined"
               label="Username"
               size="small"
+              required
             />
             <TextField
               name="password"
@@ -34,6 +35,7 @@ const Signin = ({ signin, error, reset }) => {
               variant="outlined"
               label="Password"
               size="small"
+              required
             />
             <Button
               type="submit"
