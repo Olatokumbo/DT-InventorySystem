@@ -18,8 +18,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
-import ClassIcon from "@material-ui/icons/Class";
-import ListAltIcon from "@material-ui/icons/ListAlt";
 import PeopleIcon from "@material-ui/icons/People";
 import FolderIcon from "@material-ui/icons/Folder";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -124,7 +122,7 @@ const Navbar = (props) => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              Life Naturals Admin
+              Computer Inventory System
             </Typography>
           </Grid>
           <Grid>
@@ -176,22 +174,8 @@ const Navbar = (props) => {
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
-              <ListItemText primary={"Products"} />
+              <ListItemText primary={"Transaction"} />
             </ListItem>
-          </Link>
-          <ListItem button disabled>
-            <ListItemIcon>
-              <ClassIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Categories"} />
-          </ListItem>
-          <Link to="/orders">
-          <ListItem button>
-            <ListItemIcon>
-              <ListAltIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Orders"} />
-          </ListItem>
           </Link>
           <Link to="/users">
             <ListItem button>
