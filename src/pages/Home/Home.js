@@ -5,16 +5,23 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import axios from "axios";
+import EntryModal from "../../components/EntryModal/EntryModal"; 
 import style from "./Home.module.css";
 
 const Home = () => {
-  const [inventoryData, setInventoryData] = useState([])
+  const [inventoryData, setInventoryData] = useState([]);
+  const [modalState, setModalState] = useState(false);
+  const openModal = ()=>{
+    setModalState(true);
+  }
+  const closeModal =(value)=>{
+    setModalState(!value);
+  }
   useEffect(() => {
     axios.get("http://localhost:7000")
     .then((inventory) => {
       setInventoryData(inventory.data)
     });
-
     setDatatable((e) => {
       return { ...e, rows: inventoryData };
     });
@@ -105,9 +112,9 @@ const Home = () => {
 
   return (
     <div className={style.home}>
-      <Button variant="contained" color="primary">
-        Add Computer
-      </Button>
+    <Button size="large" color="primary" variant="contained" className={style.addButton} onClick={openModal}>
+    Add Data
+  </Button>
       <MDBDataTableV5
         hover
         entriesOptions={[5, 20, 25]}
@@ -119,6 +126,7 @@ const Home = () => {
         searchBottom={false}
         barReverse
       />
+      <EntryModal modalState={modalState} closeModal={closeModal}/>
     </div>
   );
 };
