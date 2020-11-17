@@ -4,6 +4,7 @@ var connection = mysql.createConnection({
   user: "root",
   password: "password",
   database: "inventory_db",
+  multipleStatements: true
 });
 connection.connect((err) => {
   if (err) {

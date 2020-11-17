@@ -170,12 +170,12 @@ const Navbar = (props) => {
               <ListItemText primary={"Home"} />
             </ListItem>
           </Link>
-          <Link to="/approvals">
+          <Link to="/requests">
             <ListItem button>
               <ListItemIcon>
                 <InfoIcon />
               </ListItemIcon>
-              <ListItemText primary={"Approvals"} />
+              <ListItemText primary={"Requests"} />
             </ListItem>
           </Link>
           <Link to="/transaction">

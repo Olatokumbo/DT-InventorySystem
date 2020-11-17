@@ -29,4 +29,24 @@ db.query(query, [firstName, lastName, employeeId, machineNumber, startDate, endD
 // console.log(query);
 });
 
+
+router.delete("/approved", (req, res)=>{
+  const machineNumber = req.body.machineNumber;
+  console.log(machineNumber);
+  const query = `DELETE FROM requests WHERE machineNumber=?; UPDATE assetinventory SET approvalFlag=? WHERE machineNumber=?;` 
+  db.query(query,[machineNumber, `Approved`, machineNumber],  (err, data) => {
+    if (err) throw err;
+    res.status(200).json(data);
+  });
+})
+
+router.delete("/denied", (req, res)=>{
+  const machineNumber = req.body.machineNumber;
+  console.log(machineNumber);
+  const query = `DELETE FROM requests WHERE machineNumber=?` 
+  db.query(query,[machineNumber],  (err, data) => {
+    if (err) throw err;
+    res.status(200).json(data);
+  });
+})
 module.exports = router;

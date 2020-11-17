@@ -4,60 +4,21 @@ import { Button } from "@material-ui/core";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import axios from "axios";
 import style from "./Home.module.css";
-const rows = [
-  {
-    machineType: "Desktop",
-    makeAndModel: "Dell Inspire 15",
-    serviceTag: "123456",
-    machineName: "TA5-123456",
-    deliveryDate: "2011/04/25",
-    user: "John Doe",
-    resourceAccount: "6575765g76576",
-    currentUser: "John Doe",
-    deploymentDate: "Edinburgh",
-    businessUnit: "Galley",
-    location: "Module 1",
-    poNumber: "123456789",
-    approvalFlag: "Approved",
-  },
-  {
-    machineType: "Desktop",
-    makeAndModel: "Dell Inspire 15",
-    serviceTag: "123456",
-    machineName: "TA5-123456",
-    deliveryDate: "2011/04/25",
-    user: "John Doe",
-    resourceAccount: "6575765g76576",
-    currentUser: "John Doe",
-    deploymentDate: "Edinburgh",
-    businessUnit: "Galley",
-    location: "Module 1",
-    poNumber: "123456789",
-    approvalFlag: "Approved",
-  },
-  {
-    machineType: "Desktop",
-    makeAndModel: "Dell Inspire 15",
-    serviceTag: "123456",
-    machineName: "TA5-123456",
-    deliveryDate: "2011/04/25",
-    user: "John Doe",
-    resourceAccount: "6575765g76576",
-    currentUser: "John Doe",
-    deploymentDate: "Edinburgh",
-    businessUnit: "Galley",
-    location: "Module 1",
-    poNumber: "123456789",
-    approvalFlag: "Approved",
-  },
-];
+
 const Home = () => {
+  const [inventoryData, setInventoryData] = useState([])
   useEffect(() => {
-    setDatatable((e) => {
-      return { ...e, rows };
+    axios.get("http://localhost:7000")
+    .then((inventory) => {
+      setInventoryData(inventory.data)
     });
-  }, []);
+
+    setDatatable((e) => {
+      return { ...e, rows: inventoryData };
+    });
+  }, [inventoryData]);
   const [datatable, setDatatable] = useState({
     columns: [
       {
@@ -80,8 +41,8 @@ const Home = () => {
         width: 100,
       },
       {
-        label: "Machine Name",
-        field: "machineName",
+        label: "Machine Number",
+        field: "machineNumber",
         sort: "asc",
         width: 100,
       },
@@ -144,7 +105,9 @@ const Home = () => {
 
   return (
     <div className={style.home}>
-      <Button variant="contained" color="primary">Add Computer</Button>
+      <Button variant="contained" color="primary">
+        Add Computer
+      </Button>
       <MDBDataTableV5
         hover
         entriesOptions={[5, 20, 25]}

@@ -14,7 +14,7 @@ app.use("/requests", requests)
 
 
 app.get("/", (req, res) => {
-  const query = "SELECT * from computers";
+  const query = "SELECT * from assetinventory";
   db.query(query, (err, data) => {
     if (err) throw err;
     res.status(200).json(data);

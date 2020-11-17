@@ -1,0 +1,42 @@
+.card{
+    margin: 0.5rem;
+    width: fit-content;
+    place-self: center;
+}
+
+.name{
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.name p{
+    font-size: x-large !important;
+    font-weight: 500 !important;
+}
+
+.name :first-child{
+    margin-right: 0.2rem !important;
+}
+
+.date{
+    display: flex;
+}
+
+.date :first-child{
+    margin-right: 1rem !important;
+}
+
+.actions{
+    margin-top: 1rem; 
+}
+
+.actions .btn{
+    margin: 0 0.3rem !important;
+}
+
+.messageContainer{
+    background-color: rgba(230, 230, 230, 0.521);
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+}

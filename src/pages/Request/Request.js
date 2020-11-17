@@ -48,7 +48,7 @@ const Request = () => {
   const submit = async (e) => {
     console.log("submit")
     e.preventDefault();
-    await axios.post("http://localhost:7000/approvals", {
+    await axios.post("http://localhost:7000/requests", {
       firstName,
       lastName,
       employeeId,
