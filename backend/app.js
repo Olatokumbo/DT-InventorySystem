@@ -1,7 +1,7 @@
 const express = require("express");
 const db = require("./database");
 const cors = require("cors");
-const approval = require("./routes/approval");
+const requests = require("./routes/requests");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 7000;
@@ -10,7 +10,7 @@ app.use(cors({credentials: true}));
 
 app.use(bodyParser.urlencoded(({extended: true})));
 app.use(bodyParser.json());
-app.use("/approvals", approval)
+app.use("/requests", requests)
 
 
 app.get("/", (req, res) => {
