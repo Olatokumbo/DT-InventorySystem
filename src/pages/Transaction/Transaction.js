@@ -7,15 +7,18 @@ const Transaction = () => {
       <div className={style.top}>
       <div className={style.container}>
         <TextField
-          size="large"
+          size="medium"
           variant="outlined"
+          name="searchAssetNumber"
           label="Search Asset Number"
           className={style.input}
+          autoFocus={true}
+          
         />
       </div>
       <div className={style.container}>
         <TextField
-          size="large"
+          size="medium"
           variant="outlined"
           label="Employee Id"
           className={style.input}

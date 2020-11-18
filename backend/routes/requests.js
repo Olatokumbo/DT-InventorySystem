@@ -32,9 +32,12 @@ db.query(query, [firstName, lastName, employeeId, machineNumber, startDate, endD
 
 router.post("/approve", (req, res)=>{
   const machineNumber = req.body.machineNumber;
+  const startDate = req.body.startDate;
+  const endDate = req.body.endDate;
+  console.log(startDate, endDate)
   console.log(machineNumber);
-  const query = `DELETE FROM requests WHERE machineNumber=?; UPDATE assetinventory SET approvalFlag=? WHERE machineNumber=?;` 
-  db.query(query,[machineNumber, `Approved`, machineNumber],  (err, data) => {
+  const query = `DELETE FROM requests WHERE machineNumber=?; UPDATE assetinventory SET approvalFlag=?, startDate=?, endDate=? WHERE machineNumber=?;` 
+  db.query(query,[machineNumber, `Approved`, startDate, endDate ,machineNumber],  (err, data) => {
     if (err) throw err;
     res.status(200).json(data);
   });

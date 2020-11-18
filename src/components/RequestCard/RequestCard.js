@@ -6,10 +6,12 @@ import style from "./RequestCard.module.css";
 import moment from "moment";
 import axios from "axios";
 const RequestCard = ({ data }) => {
-  const approve = (machineNumber) => {
+  const approve = (machineNumber, startDate, endDate) => {
     console.log(machineNumber)
     axios.post("http://localhost:7000/requests/approve", {
-      machineNumber
+      machineNumber,
+      startDate,
+      endDate
     }).then((data) => {
       console.log(data);
     }).catch((err)=>{
@@ -64,7 +66,7 @@ const RequestCard = ({ data }) => {
             size="small"
             variant="contained"
             color="secondary"
-            onClick={ () =>approve(data.machineNumber)}
+            onClick={ () =>approve(data.machineNumber, data.startDate, data.endDate)}
           >
             <CheckIcon />
           </Button>
