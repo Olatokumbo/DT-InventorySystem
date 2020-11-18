@@ -10,6 +10,7 @@ import {
 FormControlLabel,
 Switch
 } from "@material-ui/core";
+import axios from "axios";
 import style from "./EntryModal.module.css";
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -42,21 +43,42 @@ const EntryModal = ({ modalState, closeModal}) => {
   const [businessUnit, setBusinessUnit] = useState("");
   const [location, setLocation] = useState("");
   const [poNumber, setPoNumber] = useState("");
-  const [approvalFag, setApprovalFlag] = useState("");
-  const [moveState, setMoveState] = useState(false);
+  const [approvalFlag, setApprovalFlag] = useState("");
+  const [moveable, setMoveable] = useState(false);
 
   const handleClose = () => {
     closeModal(true);
   };
 
   const AddEntry = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     handleClose();
+    axios.post("http://localhost:7000/add", {
+    machineType, 
+    makeAndModel, 
+    serviceTag, 
+    machineNumber, 
+    deliveryDate, 
+    user, 
+    resourceAccount, 
+    currentUser, 
+    deploymentDate, 
+    businessUnit, 
+    location, 
+    poNumber, 
+    approvalFlag,
+    moveable
+    }).then((result)=>{
+      console.log(result)
+    }).catch((err)=>{
+      console.log(err)
+    })
+
   };
 
   const handleChange = (event) => {
     // setMoveState({ ...moveState, [event.target.name]: event.target.checked });
-    setMoveState(event.target.checked)
+    setMoveable(event.target.checked)
   };
   return (
     <Modal
@@ -218,7 +240,7 @@ const EntryModal = ({ modalState, closeModal}) => {
               label="Approval Flag"
               size="small"
               className={style.input}
-              value={approvalFag}
+              value={approvalFlag}
               onChange={(e) => setApprovalFlag(e.target.value)}
               InputLabelProps={{
                 shrink: true,
@@ -229,7 +251,7 @@ const EntryModal = ({ modalState, closeModal}) => {
               <Switch
                 name="Moveable"
                 color="primary"
-                checked={moveState}
+                checked={moveable}
             onChange={handleChange}
               />
             }
