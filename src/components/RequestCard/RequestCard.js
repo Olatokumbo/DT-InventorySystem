@@ -4,8 +4,27 @@ import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
 import style from "./RequestCard.module.css";
 import moment from "moment";
-
+import axios from "axios";
 const RequestCard = ({ data }) => {
+  const approve = (machineNumber) => {
+    console.log(machineNumber)
+    axios.post("http://localhost:7000/requests/approve", {
+      machineNumber
+    }).then((data) => {
+      console.log(data);
+    }).catch((err)=>{
+      console.log(err)
+    });
+  };
+  const deny = (machineNumber) => {
+    axios.post("http://localhost:7000/requests/deny", {
+      machineNumber
+    }).then((data) => {
+      console.log(data)
+    }).catch((err)=>{
+      console.log(err)
+    });
+  };
   return (
     <Card className={style.card}>
       <CardContent>
@@ -27,9 +46,7 @@ const RequestCard = ({ data }) => {
             </Typography>
           </div>
           <div className={style.messageContainer}>
-          <Typography component="p">
-          {data.message}
-          </Typography>
+            <Typography component="p">{data.message}</Typography>
           </div>
         </div>
         <div className={style.actions}>
@@ -38,6 +55,7 @@ const RequestCard = ({ data }) => {
             size="small"
             variant="contained"
             color="primary"
+            onClick={ () =>deny(data.machineNumber)}
           >
             <CloseIcon />
           </Button>
@@ -46,6 +64,7 @@ const RequestCard = ({ data }) => {
             size="small"
             variant="contained"
             color="secondary"
+            onClick={ () =>approve(data.machineNumber)}
           >
             <CheckIcon />
           </Button>

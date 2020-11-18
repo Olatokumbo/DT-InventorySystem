@@ -43,7 +43,7 @@ const EntryModal = ({ modalState, closeModal}) => {
   const [businessUnit, setBusinessUnit] = useState("");
   const [location, setLocation] = useState("");
   const [poNumber, setPoNumber] = useState("");
-  const [approvalFlag, setApprovalFlag] = useState("");
+  const [approvalFlag, setApprovalFlag] = useState("Denied");
   const [moveable, setMoveable] = useState(false);
 
   const handleClose = () => {

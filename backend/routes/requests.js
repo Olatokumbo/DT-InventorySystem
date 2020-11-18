@@ -30,7 +30,7 @@ db.query(query, [firstName, lastName, employeeId, machineNumber, startDate, endD
 });
 
 
-router.delete("/approved", (req, res)=>{
+router.post("/approve", (req, res)=>{
   const machineNumber = req.body.machineNumber;
   console.log(machineNumber);
   const query = `DELETE FROM requests WHERE machineNumber=?; UPDATE assetinventory SET approvalFlag=? WHERE machineNumber=?;` 
@@ -40,7 +40,7 @@ router.delete("/approved", (req, res)=>{
   });
 })
 
-router.delete("/denied", (req, res)=>{
+router.post("/deny", (req, res)=>{
   const machineNumber = req.body.machineNumber;
   console.log(machineNumber);
   const query = `DELETE FROM requests WHERE machineNumber=?` 
