@@ -3,5 +3,59 @@
     place-items: center;
     height: 100vh;
     overflow: auto;
-    background-color: rgb(243, 243, 243)212, 228, 228);
+    background-color: #6161ff;
+}
+.top{
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+}
+
+.container{
+    background-color: rgba(255, 255, 255, 0.726);
+    padding: 3rem;
+    border-radius: 5px;
+    margin: 0.5rem;
+}
+
+.container .input{
+    width: 23rem;
+}
+
+.data{
+    background-color: rgba(255, 255, 255, 0.726);
+    padding: 3rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+width: auto;
+}
+
+.statusContainer{
+    display: flex;
+}
+.statusContainer p{
+    font-size: 2rem;
+}
+.statusContainer p:nth-child(1){
+    margin-right: 0.6rem;
+}
+.approved{
+    color: green !important;
+}
+.denied{
+    color: red !important;
+}
+
+.dates{
+    display: flex;
+}
+
+.dates p{
+    margin-right: 0.5rem;
+}
+
+.currentUser{
+    font-size: x-large !important;
 }
