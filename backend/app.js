@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("./database");
 const cors = require("cors");
 const requests = require("./routes/requests");
+const transactions = require("./routes/transactions");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 7000;
@@ -11,6 +12,7 @@ app.use(cors({credentials: true}));
 app.use(bodyParser.urlencoded(({extended: true})));
 app.use(bodyParser.json());
 app.use("/requests", requests)
+app.use("/transactions", transactions)
 
 
 app.get("/", (req, res) => {
