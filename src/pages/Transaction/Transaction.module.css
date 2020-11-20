@@ -34,6 +34,7 @@ width: auto;
 
 .statusContainer{
     display: flex;
+    justify-content: center;
 }
 .statusContainer p{
     font-size: 2rem;
@@ -58,4 +59,9 @@ width: auto;
 
 .currentUser{
     font-size: x-large !important;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-evenly;
 }

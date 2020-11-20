@@ -19,17 +19,30 @@ router.post("/search", (req, res)=>{
     });
 });
 
-router.post("/validate", (req, res)=>{
+router.post("/validate/in", (req, res)=>{
     const {
-        currentUser, 
-        approvalFlag, 
-        startDate, 
-        endDate
+        currentUser,
+        inDate,
+        machineNumber
     } = req.body;
-    const query =`INSERT INTO transactions (currentUser, approvalFlag, startDate, endDate) VALUES (?,?,?,?)`
-    db.query(query,[currentUser, approvalFlag, startDate, endDate], (err, data)=>{
+    const query =`INSERT INTO transactions (currentUser, inDate, machineNumber) VALUES (?,?, ?)`
+    db.query(query,[currentUser, inDate, machineNumber], (err, data)=>{
         if (err) throw err;
-        console.log(data);
+        res.status(200).json(data);
+    })
+});
+
+router.post("/validate/out", (req, res)=>{
+    const {
+        currentUser,
+        outDate,
+        machineNumber
+    } = req.body;
+    console.log(outDate)
+    const query =`INSERT INTO transactions (currentUser, outDate, machineNumber) VALUES (?,?, ?)`
+    db.query(query,[currentUser, outDate, machineNumber], (err, data)=>{
+        if (err) throw err;
+        res.status(200).json(data);
     })
 });
 

@@ -14,6 +14,7 @@ const RequestCard = ({ data }) => {
       endDate
     }).then((data) => {
       console.log(data);
+      window.location.reload()
     }).catch((err)=>{
       console.log(err)
     });
@@ -23,6 +24,7 @@ const RequestCard = ({ data }) => {
       machineNumber
     }).then((data) => {
       console.log(data)
+      window.location.reload()
     }).catch((err)=>{
       console.log(err)
     });
