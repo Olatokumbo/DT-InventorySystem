@@ -194,12 +194,12 @@ const Navbar = (props) => {
               <ListItemText primary={"Users"} />
             </ListItem>
           </Link>
-          <Link to="/settings">
+          <Link to="/Report">
             <ListItem button>
               <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
-              <ListItemText primary={"Settings"} />
+              <ListItemText primary={"Report"} />
             </ListItem>
           </Link>
         </List>

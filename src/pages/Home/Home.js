@@ -5,27 +5,14 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import axios from "axios";
-import EntryModal from "../../components/EntryModal/EntryModal"; 
+import EntryModal from "../../components/EntryModal/EntryModal";
+import {useHistory} from "react-router-dom"
 import style from "./Home.module.css";
 
 const Home = () => {
+  const history = useHistory();
   const [inventoryData, setInventoryData] = useState([]);
   const [modalState, setModalState] = useState(false);
-  const openModal = ()=>{
-    setModalState(true);
-  }
-  const closeModal =(value)=>{
-    setModalState(!value);
-  }
-  useEffect(() => {
-    axios.get("http://localhost:7000")
-    .then((inventory) => {
-      setInventoryData(inventory.data)
-    });
-    setDatatable((e) => {
-      return { ...e, rows: inventoryData };
-    });
-  }, [inventoryData]);
   const [datatable, setDatatable] = useState({
     columns: [
       {
@@ -102,13 +89,40 @@ const Home = () => {
         width: 100,
       },
       {
-        label: "Approval Flag",
-        field: "approvalFlag",
+        label: "Action",
+        field: "action",
         sort: "disabled",
         width: 100,
       },
     ],
   });
+  const openModal = ()=>{
+    setModalState(true);
+  }
+  const closeModal =(value)=>{
+    setModalState(!value);
+  }
+  useEffect(() => {
+    const getData = async ()=>{
+      await axios.get("http://localhost:7000")
+    .then((inventory) => {
+      const test = inventory.data.map((data)=>{
+        var temp = Object.assign({}, data);
+            temp.action = <Button variant="contained" color="primary" onClick={() => {history.push(`/view/${temp.machineNumber}`)}}>View</Button>;
+        return temp;
+      });
+      // console.log(test);
+      setInventoryData(test)
+      
+    }).then(()=>{
+      setDatatable((e) => {
+        return { ...e, rows: inventoryData };
+      });
+    });
+    }
+    getData()
+  }, [inventoryData]);
+  
 
   return (
     <div className={style.home}>
