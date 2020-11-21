@@ -36,12 +36,11 @@ app.post("/add", (req, res)=>{
     deploymentDate, 
     businessUnit, 
     location, 
-    poNumber, 
-    approvalFlag,
+    poNumber,
     moveable
   } = req.body
-  const query = `INSERT INTO assetinventory (machineType, makeAndModel, serviceTag, machineNumber, deliveryDate, user, resourceAccount, currentUser, deploymentDate, businessUnit, location, poNumber, approvalFlag, moveable) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
-  db.query(query, [machineType, makeAndModel, serviceTag, machineNumber, deliveryDate, user, resourceAccount, currentUser, deploymentDate, businessUnit, location, poNumber, approvalFlag, moveable], (err, data) => {
+  const query = `INSERT INTO assetinventory (machineType, makeAndModel, serviceTag, machineNumber, deliveryDate, user, resourceAccount, currentUser, deploymentDate, businessUnit, location, poNumber, logFlag, moveable) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+  db.query(query, [machineType, makeAndModel, serviceTag, machineNumber, deliveryDate, user, resourceAccount, currentUser, deploymentDate, businessUnit, location, poNumber, 0, moveable], (err, data) => {
     if (err) throw err;
     res.status(200).json(data);
   });

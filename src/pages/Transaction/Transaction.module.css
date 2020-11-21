@@ -4,6 +4,7 @@
     height: 100vh;
     overflow: auto;
     background-color: #6161ff;
+    padding: 0.5rem;
 }
 .top{
     display: flex;
@@ -64,4 +65,9 @@ width: auto;
 .actions{
     display: flex;
     justify-content: space-evenly;
+}
+
+.signedoutMessage{
+    color: red !important;
+    text-align: center !important;
 }

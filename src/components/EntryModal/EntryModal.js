@@ -43,7 +43,6 @@ const EntryModal = ({ modalState, closeModal}) => {
   const [businessUnit, setBusinessUnit] = useState("");
   const [location, setLocation] = useState("");
   const [poNumber, setPoNumber] = useState("");
-  const [approvalFlag, setApprovalFlag] = useState("Denied");
   const [moveable, setMoveable] = useState(false);
 
   const handleClose = () => {
@@ -65,8 +64,7 @@ const EntryModal = ({ modalState, closeModal}) => {
     deploymentDate, 
     businessUnit, 
     location, 
-    poNumber, 
-    approvalFlag,
+    poNumber,
     moveable
     }).then((result)=>{
       console.log(result)
@@ -235,17 +233,6 @@ const EntryModal = ({ modalState, closeModal}) => {
                   shrink: true,
                 }}
               />
-              <TextField
-              variant="outlined"
-              label="Approval Flag"
-              size="small"
-              className={style.input}
-              value={approvalFlag}
-              onChange={(e) => setApprovalFlag(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
             <FormControlLabel
             control={
               <Switch

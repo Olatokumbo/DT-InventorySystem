@@ -36,8 +36,8 @@ router.post("/approve", (req, res)=>{
   const endDate = req.body.endDate;
   console.log(startDate, endDate)
   console.log(machineNumber);
-  const query = `DELETE FROM requests WHERE machineNumber=?; UPDATE assetinventory SET approvalFlag=?, startDate=?, endDate=? WHERE machineNumber=?;` 
-  db.query(query,[machineNumber, `Approved`, startDate, endDate ,machineNumber],  (err, data) => {
+  const query = `DELETE FROM requests WHERE machineNumber=?; UPDATE assetinventory SET startDate=?, endDate=? WHERE machineNumber=?;` 
+  db.query(query,[machineNumber, startDate, endDate ,machineNumber],  (err, data) => {
     if (err) throw err;
     res.status(200).json(data);
   });
