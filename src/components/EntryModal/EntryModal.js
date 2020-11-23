@@ -36,7 +36,6 @@ const EntryModal = ({ modalState, closeModal}) => {
   const [serviceTag, setServiceTag] = useState("");
   const [machineNumber, setMachineNumber] = useState("");
   const [deliveryDate, setDeliveryDate] = useState(""); 
-  const [user, setUser] = useState("");
   const [resourceAccount, setResourceAccount] = useState(""); 
   const [currentUser, setCurrentUser] = useState("");
   const [deploymentDate, setDeploymentDate] = useState("");
@@ -58,7 +57,6 @@ const EntryModal = ({ modalState, closeModal}) => {
     serviceTag, 
     machineNumber, 
     deliveryDate, 
-    user, 
     resourceAccount, 
     currentUser, 
     deploymentDate, 
@@ -151,17 +149,6 @@ const EntryModal = ({ modalState, closeModal}) => {
                 className={style.input}
                 value={deliveryDate}
                 onChange={(e) => setDeliveryDate(e.target.value)}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <TextField
-                variant="outlined"
-                label="User"
-                size="small"
-                className={style.input}
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}

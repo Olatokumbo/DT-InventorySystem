@@ -47,12 +47,6 @@ const Home = () => {
         width: 150,
       },
       {
-        label: "User/ Assignee",
-        field: "user",
-        sort: "disabled",
-        width: 100,
-      },
-      {
         label: "User/ Resource Account",
         field: "resourceAccount",
         sort: "disabled",
@@ -108,7 +102,7 @@ const Home = () => {
     .then((inventory) => {
       const test = inventory.data.map((data)=>{
         var temp = Object.assign({}, data);
-            temp.action = <Button variant="contained" color="primary" onClick={() => {history.push(`/asset/view/${temp.machineNumber}`)}}>View</Button>;
+            temp.action = <Button variant="contained" color="primary" onClick={() => {history.push(`/asset/view/${temp.uid}`)}}>View</Button>;
         return temp;
       });
       // console.log(test);

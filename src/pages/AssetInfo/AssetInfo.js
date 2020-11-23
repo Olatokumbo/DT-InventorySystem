@@ -163,7 +163,7 @@ const AssetInfo = ({
           label="Moveable"
         />
         <div className={style.durationDates}>
-          <Typography color="textSecondary">Request Dates</Typography>
+          <Typography color="textSecondary">Requested Dates</Typography>
           <TextField
             label="Start Date"
             type="text"
