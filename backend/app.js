@@ -46,6 +46,22 @@ app.post("/add", (req, res)=>{
   });
 })
 
+app.get("/asset/:assetId", (req, res)=>{
+    const assetId = req.params.assetId;
+    const query = `SELECT * FROM assetinventory WHERE machineNumber=?`
+    db.query(query, [assetId], (err, data)=>{
+      if (err) throw err;
+      if(data.length<1){
+        res.status(400).json({
+            message: "Records has not been found"
+        });
+      }
+      else{
+        res.status(200).json(data);
+      }
+    })
+})
+
 app.listen(port, (req, res) => {
   console.log("Server is running at port", port);
 });

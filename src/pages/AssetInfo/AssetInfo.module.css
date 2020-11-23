@@ -1,0 +1,57 @@
+.assetInfo{
+    /* padding: 1rem; */
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.editBtn{
+    background-color: #74C576 !important;
+    outline: none;
+    border: none;
+}
+
+.editBtn:focus{
+    outline: none;
+    border: none;
+}
+
+.header button{
+    margin: 0 0.3rem;
+}
+
+.listContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.input{
+    /* justify-self: center; */
+    /* width: 100%; */
+    margin: 1rem !important;
+}
+
+.dates{
+    display: flex;
+    justify-content: center;
+}
+.dates .input{
+    width: 100% !important;
+}
+.durationDates{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.durationDates > * {
+    width: 100%;
+}
+
+.switch{
+    justify-self: center !important;
+}

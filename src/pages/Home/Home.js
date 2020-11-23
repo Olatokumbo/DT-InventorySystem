@@ -108,7 +108,7 @@ const Home = () => {
     .then((inventory) => {
       const test = inventory.data.map((data)=>{
         var temp = Object.assign({}, data);
-            temp.action = <Button variant="contained" color="primary" onClick={() => {history.push(`/view/${temp.machineNumber}`)}}>View</Button>;
+            temp.action = <Button variant="contained" color="primary" onClick={() => {history.push(`/asset/view/${temp.machineNumber}`)}}>View</Button>;
         return temp;
       });
       // console.log(test);
