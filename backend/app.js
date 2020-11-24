@@ -3,8 +3,10 @@ const db = require("./database");
 const cors = require("cors");
 const requests = require("./routes/requests");
 const transactions = require("./routes/transactions");
+const report = require("./routes/report");
 const bodyParser = require("body-parser");
-var { nanoid } = require("nanoid");
+const { nanoid } = require("nanoid");
+
 const app = express();
 const port = 7000;
 
@@ -14,6 +16,7 @@ app.use(bodyParser.urlencoded(({extended: true})));
 app.use(bodyParser.json());
 app.use("/requests", requests)
 app.use("/transactions", transactions)
+app.use("/report", report)
 
 // GET DATA FROM INVENTORY
 app.get("/", (req, res) => {

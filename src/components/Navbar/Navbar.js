@@ -20,7 +20,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import PeopleIcon from "@material-ui/icons/People";
 import FolderIcon from "@material-ui/icons/Folder";
-import SettingsIcon from "@material-ui/icons/Settings";
+import BarChartIcon from '@material-ui/icons/BarChart';
 import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
 // import { connect } from "react-redux";
@@ -197,7 +197,7 @@ const Navbar = (props) => {
           <Link to="/Report">
             <ListItem button>
               <ListItemIcon>
-                <SettingsIcon />
+                <BarChartIcon />
               </ListItemIcon>
               <ListItemText primary={"Report"} />
             </ListItem>
