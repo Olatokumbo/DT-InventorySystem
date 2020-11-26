@@ -7,8 +7,8 @@ import "mdbreact/dist/css/mdb.css";
 import axios from "axios";
 import moment from "moment"
 import {useHistory} from "react-router-dom"
-import style from "./Report.module.css";
-const Report = () => {
+import ReportHeader from "../../components/ReportHeader/ReportHeader";
+const ExpiredRequests = () => {
   const history = useHistory();  
   const [inventoryData, setInventoryData] = useState([]);
   const [datatable, setDatatable] = useState({
@@ -95,17 +95,7 @@ const Report = () => {
     getData();
   }, [datatable]);
   return (
-    <div className={style.report}>
-      <div className={style.left}>
-        <h3 style={{ textAlign: "center" }}>Report</h3>
-        <Button className={style.navBtn} variant="contained">
-          Expired Requests
-        </Button>
-        <Button className={style.navBtn} variant="contained">
-          OffSite Assets
-        </Button>
-      </div>
-      <div className={style.right}>
+      <ReportHeader>
         <h2>Expired Requests</h2>
         <h5>Total: {inventoryData.length}</h5>
         <MDBDataTableV5
@@ -119,9 +109,8 @@ const Report = () => {
           searchBottom={false}
           barReverse
         />
-      </div>
-    </div>
+      </ReportHeader>
   );
 };
 
-export default Report;
+export default ExpiredRequests;
