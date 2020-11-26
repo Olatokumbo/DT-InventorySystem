@@ -194,7 +194,7 @@ const Navbar = (props) => {
               <ListItemText primary={"Users"} />
             </ListItem>
           </Link>
-          <Link to="/Report">
+          <Link to="/report">
             <ListItem button>
               <ListItemIcon>
                 <BarChartIcon />

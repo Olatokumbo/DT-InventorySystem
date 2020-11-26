@@ -115,7 +115,7 @@ const Home = () => {
     });
     }
     getData()
-  }, [inventoryData]);
+  }, [datatable]);
   
 
   return (

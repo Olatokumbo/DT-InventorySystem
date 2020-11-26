@@ -1,0 +1,32 @@
+.report{
+    display: flex;
+    height: 100%;
+}
+.left{
+    background-color: lightblue;
+    padding: 1rem;
+    position: absolute;
+    left: 0;
+    top: 4rem;
+    bottom: 0;
+    width: 14rem;
+}
+.left .navBtn{
+    margin: 0.5rem 0 !important;
+    width: 100% !important;
+    padding: 0.8rem;
+}
+
+.right{
+    flex: 1;
+    padding: 0.8rem;
+    position: absolute;
+    right: 0;
+    left: 14rem;
+    top: 4rem;
+}
+@media only screen and (max-width: 600px){
+    .left{
+        top: 3rem
+    }
+}

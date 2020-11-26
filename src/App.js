@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./hoc/PrivateRoute";
 import PublicRoute from "./hoc/PublicRoute";
-import {Signin, Home, Request, Transaction, Requests, AssetInfo} from "./pages";
+import {Signin, Home, Request, Transaction, Requests, AssetInfo, Report} from "./pages";
 import "./App.css";
 const App = () => {
   return (
@@ -14,6 +14,7 @@ const App = () => {
       <Route path="/request" component={Request}/>
       <PrivateRoute path="/asset/view/:assetId" component={AssetInfo}/>
       <PrivateRoute path="/requests" component={Requests}/>
+      <PrivateRoute path="/report" component={Report}/>
       </Switch>
     </Router>
   );
