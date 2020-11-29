@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../database.js");
-
+const mailer = require("../middlewares/mailer");
+require('dotenv').config()
 router.get("/", (req, res) => {
   const query = "SELECT * FROM requests";
   db.query(query, (err, data) => {
@@ -10,7 +11,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
+router.post("/", mailer, (req, res) => {
   console.log(req.body);
   const {
     firstName,
