@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const basicAuth = require('express-basic-auth');
+// const basicAuth = require('express-basic-auth');
 const db = require("../database");
-router.use(basicAuth({
-    users: { 'admin': 'supersecret' }
-}))
+// router.use(basicAuth({
+//     users: { 'admin': 'supersecret' }
+// }))
 // router.get("/cookie", (req, res) => {
 //   res.cookie("foo", "bar", { signed: true }).send();
 // });
@@ -23,6 +23,8 @@ router.post("/signin", (req, res)=>{
         else{
             if(data[0].password===password){
                 res.json({message: "Correct Password"})
+                req.session.loggedin = true;
+				req.session.username = username;
             }
             else res.json({message: "Incorrect Password"})
         }
