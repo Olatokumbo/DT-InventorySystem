@@ -2,8 +2,10 @@ import React from "react";
 import { TextField, Button, Typography } from "@material-ui/core";
 import logo from "../../assets/images/share.png";
 import axios from "axios";
+import {useHistory} from "react-router-dom"
 import style from "./Signin.module.css";
 const Signin = ({ signin, error, reset }) => {
+  const history =  useHistory();
   const signinForm = (e) => {
     e.preventDefault();
     let username = e.target.elements.username.value;
@@ -18,6 +20,7 @@ const Signin = ({ signin, error, reset }) => {
     })
     .then((data) => {
       console.log(data);
+      history.push("/home")
     }).catch((err)=>{
       console.log(err);
     })
