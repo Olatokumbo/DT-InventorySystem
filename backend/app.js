@@ -7,18 +7,18 @@ const authenication = require("./routes/authentication");
 const report = require("./routes/report");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
-const session = require("express-session");
+// const session = require("express-session");
 const auth = require("./middlewares/auth");
 const { nanoid } = require("nanoid");
 require('dotenv').config()
 
 const app = express();
 const port = 7000;
-app.use(session({
-	secret: process.env.SECRET_KEY,
-	resave: true,
-	saveUninitialized: true
-}));
+// app.use(session({
+// 	secret: process.env.SECRET_KEY,
+// 	resave: true,
+// 	saveUninitialized: true
+// }));
 
 app.use(cookieParser(process.env.SECRET_KEY))
 app.use(cors({credentials: true}));
@@ -29,9 +29,13 @@ app.use("/transactions", transactions)
 app.use("/report", report);
 app.use("/auth", authenication);
 
+app.get('/checkToken', auth, function(req, res) {
+  res.sendStatus(200);
+});
 
 // GET DATA FROM INVENTORY
 app.get("/", auth, (req, res) => {
+  console.log(req.session)
   const query = "SELECT * from assetinventory";
   db.query(query, (err, data) => {
     if (err) throw err;

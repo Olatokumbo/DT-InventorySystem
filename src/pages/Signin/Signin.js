@@ -1,13 +1,26 @@
 import React from "react";
 import { TextField, Button, Typography } from "@material-ui/core";
 import logo from "../../assets/images/share.png";
+import axios from "axios";
 import style from "./Signin.module.css";
 const Signin = ({ signin, error, reset }) => {
   const signinForm = (e) => {
     e.preventDefault();
     let username = e.target.elements.username.value;
     let password = e.target.elements.password.value;
-    signin({ username, password });
+    axios({
+      method: "POST",
+      url: "http://localhost:7000/auth/signin",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data:{username, password}
+    })
+    .then((data) => {
+      console.log(data);
+    }).catch((err)=>{
+      console.log(err);
+    })
   };
   return (
     <div className={style.main}>
@@ -20,13 +33,16 @@ const Signin = ({ signin, error, reset }) => {
           </div>
           <form className={style.form} onSubmit={signinForm}>
             <TextField
-              name="text"
+              name="username"
               type="text"
               className={style.input}
               variant="outlined"
               label="Username"
               size="small"
               required
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
             <TextField
               name="password"
@@ -36,6 +52,9 @@ const Signin = ({ signin, error, reset }) => {
               label="Password"
               size="small"
               required
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
             <Button
               type="submit"
