@@ -18,6 +18,12 @@ const authReducer = (state = initialState, action) => {
                 uid: null,
                 error: action.message
             }
+        case actionTypes.SIGNOUT:
+            return {
+                ...state,
+                uid: null,
+                error: null
+            }
         case actionTypes.RESET:
             return {
                 ...state,
