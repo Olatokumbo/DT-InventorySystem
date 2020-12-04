@@ -29,7 +29,7 @@ app.use("/transactions", transactions)
 app.use("/report", report);
 app.use("/auth", authenication);
 
-app.get('/checkToken', auth, function(req, res) {
+app.get('/checkToken', function(req, res) {
   res.sendStatus(200);
 });
 

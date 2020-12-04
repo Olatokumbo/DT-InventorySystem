@@ -2,28 +2,17 @@ import React from "react";
 import { TextField, Button, Typography } from "@material-ui/core";
 import logo from "../../assets/images/share.png";
 import axios from "axios";
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+import {connect} from "react-redux";
+import * as actionCreator from "../../store/actions";
 import style from "./Signin.module.css";
 const Signin = ({ signin, error, reset }) => {
   const history =  useHistory();
   const signinForm = (e) => {
     e.preventDefault();
-    let username = e.target.elements.username.value;
+    let email = e.target.elements.email.value;
     let password = e.target.elements.password.value;
-    axios({
-      method: "POST",
-      url: "http://localhost:7000/auth/signin",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data:{username, password}
-    })
-    .then((data) => {
-      console.log(data);
-      history.push("/home")
-    }).catch((err)=>{
-      console.log(err);
-    })
+    signin(email, password);
   };
   return (
     <div className={style.main}>
@@ -36,11 +25,11 @@ const Signin = ({ signin, error, reset }) => {
           </div>
           <form className={style.form} onSubmit={signinForm}>
             <TextField
-              name="username"
-              type="text"
+              name="email"
+              type="email"
               className={style.input}
               variant="outlined"
-              label="Username"
+              label="Email"
               size="small"
               required
               InputLabelProps={{
@@ -78,4 +67,9 @@ const Signin = ({ signin, error, reset }) => {
   );
 };
 
-export default Signin;
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    signin: (name, password)=> dispatch(actionCreator.startSignin(name, password))
+  }
+}
+export default connect (null, mapDispatchToProps)(Signin);

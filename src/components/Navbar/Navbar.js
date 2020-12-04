@@ -23,6 +23,8 @@ import FolderIcon from "@material-ui/icons/Folder";
 import BarChartIcon from '@material-ui/icons/BarChart';
 import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actionCreator from "../../store/actions";
 // import { connect } from "react-redux";
 // import * as actionCreator from "../../store/actions";
 const drawerWidth = 240;
@@ -217,10 +219,10 @@ const Navbar = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     signout: () => dispatch(actionCreator.startSignout()),
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signout: () => dispatch(actionCreator.startSignout()),
+  };
+};
 
-export default Navbar;
+export default connect(null, mapDispatchToProps )(Navbar);
