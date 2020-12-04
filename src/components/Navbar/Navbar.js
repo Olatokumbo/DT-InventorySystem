@@ -18,15 +18,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
-import PeopleIcon from "@material-ui/icons/People";
 import FolderIcon from "@material-ui/icons/Folder";
 import BarChartIcon from '@material-ui/icons/BarChart';
 import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreator from "../../store/actions";
-// import { connect } from "react-redux";
-// import * as actionCreator from "../../store/actions";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -186,14 +183,6 @@ const Navbar = (props) => {
                 <FolderIcon />
               </ListItemIcon>
               <ListItemText primary={"Transaction"} />
-            </ListItem>
-          </Link>
-          <Link to="/users">
-            <ListItem button>
-              <ListItemIcon>
-                <PeopleIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Users"} />
             </ListItem>
           </Link>
           <Link to="/report/expired">

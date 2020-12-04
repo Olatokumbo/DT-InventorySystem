@@ -1,7 +1,6 @@
 import React from "react";
 import { TextField, Button, Typography } from "@material-ui/core";
 import logo from "../../assets/images/share.png";
-import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import * as actionCreator from "../../store/actions";
@@ -67,9 +66,15 @@ const Signin = ({ signin, error, reset }) => {
   );
 };
 
+
+const mapStateToProps = (state) =>{
+  return{
+    error: state.auth.error
+  }
+}
 const mapDispatchToProps = (dispatch) =>{
   return{
     signin: (name, password)=> dispatch(actionCreator.startSignin(name, password))
   }
 }
-export default connect (null, mapDispatchToProps)(Signin);
+export default connect (mapStateToProps, mapDispatchToProps)(Signin);
