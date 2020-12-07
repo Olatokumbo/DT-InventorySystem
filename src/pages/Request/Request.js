@@ -24,7 +24,7 @@ const Request = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   useEffect(() => {
-    axios.get("http://localhost:7000/machineNumbers").then((response) => {
+    axios.get("http://localhost:7000/requests/machineNumbers").then((response) => {
       setMachineNumberList(response.data);
     });
   }, [machineNumberList]);
