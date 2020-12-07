@@ -12,4 +12,5 @@ connection.connect((err) => {
     return;
   }
 });
+// ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
 module.exports = connection;

@@ -31,7 +31,7 @@ db.query(query, [firstName, lastName, employeeId, machineNumber, startDate, endD
 });
 
 
-app.get("/machineNumbers", (req, res)=>{
+router.get("/machineNumbers", (req, res)=>{
   const query = "SELECT machineNumber FROM assetinventory WHERE moveable=?";
   db.query(query, [1], (err, data)=>{
     if (err) throw err;

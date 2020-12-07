@@ -34,7 +34,7 @@ app.get('/checkToken', function(req, res) {
 });
 
 // GET DATA FROM INVENTORY
-app.get("/", auth, (req, res) => {
+app.get("/", (req, res) => {
   console.log(req.session)
   const query = "SELECT * from assetinventory";
   db.query(query, (err, data) => {

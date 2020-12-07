@@ -24,14 +24,20 @@ const Request = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   useEffect(() => {
-    axios.get("http://localhost:7000/requests/machineNumbers").then((response) => {
-      setMachineNumberList(response.data);
-    });
-  }, [machineNumberList]);
+    axios
+      .get("http://localhost:7000/requests/machineNumbers")
+      .then((response) => {
+        const modifiedData = response.data.map((data)=>data.machineNumber);
+        setMachineNumberList(modifiedData)
+      });
+  }, []);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
+  };
+  const handleChange = (event) => {
+    setMachineNumber(event.target.value);
   };
 
   function handleSelect(ranges) {
@@ -130,15 +136,21 @@ const Request = () => {
             }}
           />
           <FormControl className={style.select}>
-            <InputLabel id="demo-mutiple-name-label">Find Machine Number</InputLabel>
+            <InputLabel id="demo-mutiple-name-label">
+              Find Machine Number
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               label="Find Machine Number"
               id="demo-simple-select"
-              value={10}
-            > 
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              value={machineNumber}
+              onChange={handleChange}
+            >
+              {machineNumberList.map((data, index) => (
+                <MenuItem key={index} value={data}>
+                  {data}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <DateRangePicker
@@ -171,7 +183,17 @@ const Request = () => {
             size="large"
             type="submit"
             className={style.submitBtn}
-            disabled={!(!!firstName && !!lastName && !!employeeId && !!machineNumber && !!message && !!startDate  && !!endDate)}
+            disabled={
+              !(
+                !!firstName &&
+                !!lastName &&
+                !!employeeId &&
+                !!machineNumber &&
+                !!message &&
+                !!startDate &&
+                !!endDate
+              )
+            }
           >
             Submit
           </Button>

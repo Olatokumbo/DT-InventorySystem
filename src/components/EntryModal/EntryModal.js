@@ -49,7 +49,7 @@ const EntryModal = ({ modalState, closeModal}) => {
   };
 
   const AddEntry = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     handleClose();
     axios.post("http://localhost:7000/add", {
     machineType, 
