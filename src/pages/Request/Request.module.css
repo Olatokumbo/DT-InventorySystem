@@ -20,6 +20,10 @@
     margin: 1rem 0;
 }
 
+.select{
+    width: 100%;
+    margin: 0.5rem !important;
+}
 .input{
     margin: 0.5rem !important;
     width: 100% !important;

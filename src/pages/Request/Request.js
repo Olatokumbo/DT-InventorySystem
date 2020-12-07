@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Typography, Button, TextField } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import {
+  Typography,
+  Button,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@material-ui/core";
 import style from "./Request.module.css";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -11,10 +19,15 @@ const Request = () => {
   const [lastName, setLastName] = useState("");
   const [employeeId, setEmployeeId] = useState("");
   const [machineNumber, setMachineNumber] = useState("");
+  const [machineNumberList, setMachineNumberList] = useState([]);
   const [message, setMessage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-
+  useEffect(() => {
+    axios.get("http://localhost:7000/machineNumbers").then((response) => {
+      setMachineNumberList(response.data);
+    });
+  }, [machineNumberList]);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -36,33 +49,36 @@ const Request = () => {
     // [] - match is inclusive
   };
 
-  const reset = ()=>{
+  const reset = () => {
     setFirstName("");
     setLastName("");
     setEmployeeId("");
     setMachineNumber("");
     setMessage("");
-    setStartDate(new Date())
-    setEndDate(new Date())
-  }
+    setStartDate(new Date());
+    setEndDate(new Date());
+  };
   const submit = async (e) => {
-    console.log("submit")
+    console.log("submit");
     e.preventDefault();
-    await axios.post("http://localhost:7000/requests", {
-      firstName,
-      lastName,
-      employeeId,
-      machineNumber,
-      message,
-      startDate,
-      endDate,
-    }).then((data)=>{
+    await axios
+      .post("http://localhost:7000/requests", {
+        firstName,
+        lastName,
+        employeeId,
+        machineNumber,
+        message,
+        startDate,
+        endDate,
+      })
+      .then((data) => {
         console.log(data);
         alert("Your Request has been sent to the Admin");
         reset();
-    }).catch((err)=>{
-        console.log(err)
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className={style.request}>
@@ -113,19 +129,18 @@ const Request = () => {
               shrink: true,
             }}
           />
-          <TextField
-            variant="outlined"
-            label="Machine Number"
-            type="text"
-            value={machineNumber}
-            size="small"
-            onChange={(e) => setMachineNumber(e.target.value)}
-            required
-            className={style.input}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+          <FormControl className={style.select}>
+            <InputLabel id="demo-mutiple-name-label">Find Machine Number</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              label="Find Machine Number"
+              id="demo-simple-select"
+              value={10}
+            > 
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
           <DateRangePicker
             required
             ranges={[selectionRange]}
@@ -156,6 +171,7 @@ const Request = () => {
             size="large"
             type="submit"
             className={style.submitBtn}
+            disabled={!(!!firstName && !!lastName && !!employeeId && !!machineNumber && !!message && !!startDate  && !!endDate)}
           >
             Submit
           </Button>
