@@ -5,26 +5,28 @@ import CheckIcon from "@material-ui/icons/Check";
 import style from "./RequestCard.module.css";
 import moment from "moment";
 import axios from "axios";
-const RequestCard = ({ data }) => {
-  const approve = (machineNumber, startDate, endDate) => {
+const RequestCard = ({ data, removeCard }) => {
+  const approve = (machineNumber, startDate, endDate, id) => {
     console.log(machineNumber)
     axios.post("http://localhost:7000/requests/approve", {
       machineNumber,
       startDate,
       endDate
-    }).then((data) => {
-      console.log(data);
-      window.location.reload()
+    }).then(() => {
+      // console.log(data);
+      // window.location.reload()
+      removeCard(data.id);
     }).catch((err)=>{
       console.log(err)
     });
   };
-  const deny = (machineNumber) => {
+  const deny = (machineNumber, id) => {
     axios.post("http://localhost:7000/requests/deny", {
       machineNumber
     }).then((data) => {
       console.log(data)
-      window.location.reload()
+      // window.location.reload()
+      removeCard(id);
     }).catch((err)=>{
       console.log(err)
     });
@@ -59,7 +61,7 @@ const RequestCard = ({ data }) => {
             size="small"
             variant="contained"
             color="primary"
-            onClick={ () =>deny(data.machineNumber)}
+            onClick={ () =>deny(data.machineNumber, data.id)}
           >
             <CloseIcon />
           </Button>
@@ -68,7 +70,7 @@ const RequestCard = ({ data }) => {
             size="small"
             variant="contained"
             color="secondary"
-            onClick={ () =>approve(data.machineNumber, data.startDate, data.endDate)}
+            onClick={ () =>approve(data.machineNumber, data.startDate, data.endDate, data.id)}
           >
             <CheckIcon />
           </Button>

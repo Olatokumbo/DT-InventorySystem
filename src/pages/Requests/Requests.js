@@ -13,12 +13,19 @@ const Requests = () => {
     };
     getRequests();
   }, []);
+  const removeCard = (id) =>{
+    // console.log("REMOVE", id);
+    // console.log(requests.filter((request)=>id!==request.id));
+    setRequests((prevState)=>{
+      return prevState.filter((data)=>(id!==data.id))
+    })
+  }
   return (<div className={style.main}>
     <div className={style.header}>
     <h2>Pending Requests</h2>
     </div>
     <div className={style.requests}>
-    {requests.map((request)=> <RequestCard key={request.id} data={request}/>)}
+    {requests.map((request)=> <RequestCard key={request.id} data={request} removeCard={removeCard}/>)}
     </div>
     </div>);
 };
