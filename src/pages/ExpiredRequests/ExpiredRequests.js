@@ -62,7 +62,11 @@ const ExpiredRequests = () => {
   useEffect(() => {
     const getData = async () => {
       await axios
-        .get("http://localhost:7000/report/expired")
+        .get("http://localhost:7000/report/expired", {
+          headers: {
+            "Authorization" : process.env.REACT_APP_TOKEN
+          }
+        })
         .then((inventory) => {
           const test = inventory.data.map((data) => {
             var temp = Object.assign({}, data);

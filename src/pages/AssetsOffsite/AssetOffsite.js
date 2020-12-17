@@ -5,11 +5,11 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import axios from "axios";
-import moment from "moment"
-import {useHistory} from "react-router-dom"
+import moment from "moment";
+import { useHistory } from "react-router-dom";
 import ReportHeader from "../../components/ReportHeader/ReportHeader";
 const AssetOffsite = () => {
-  const history = useHistory();  
+  const history = useHistory();
   const [inventoryData, setInventoryData] = useState([]);
   const [datatable, setDatatable] = useState({
     columns: [
@@ -62,7 +62,11 @@ const AssetOffsite = () => {
   useEffect(() => {
     const getData = async () => {
       await axios
-        .get("http://localhost:7000/report/out")
+        .get("http://localhost:7000/report/out", {
+          headers: {
+            Authorization: process.env.REACT_APP_TOKEN,
+          },
+        })
         .then((inventory) => {
           const test = inventory.data.map((data) => {
             var temp = Object.assign({}, data);
@@ -70,17 +74,15 @@ const AssetOffsite = () => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => {history.push(`/asset/view/${temp.uid}`)}}
+                onClick={() => {
+                  history.push(`/asset/view/${temp.uid}`);
+                }}
               >
                 View
               </Button>
             );
-            temp.startDate =(
-                moment(temp.startDate).format("dddd, DD/MM/YYYY")
-            );
-            temp.endDate =(
-                moment(temp.endDate).format("dddd, DD/MM/YYYY")
-            );
+            temp.startDate = moment(temp.startDate).format("dddd, DD/MM/YYYY");
+            temp.endDate = moment(temp.endDate).format("dddd, DD/MM/YYYY");
             return temp;
           });
           // console.log(test);
@@ -95,21 +97,21 @@ const AssetOffsite = () => {
     getData();
   }, [datatable]);
   return (
-      <ReportHeader>
-        <h2>Assets  Offsite</h2>
-        <h5>Total: {inventoryData.length}</h5>
-        <MDBDataTableV5
-          hover
-          entriesOptions={[5, 20, 25]}
-          entries={5}
-          pagesAmount={4}
-          data={datatable}
-          pagingTop
-          searchTop
-          searchBottom={false}
-          barReverse
-        />
-      </ReportHeader>
+    <ReportHeader>
+      <h2>Assets Offsite</h2>
+      <h5>Total: {inventoryData.length}</h5>
+      <MDBDataTableV5
+        hover
+        entriesOptions={[5, 20, 25]}
+        entries={5}
+        pagesAmount={4}
+        data={datatable}
+        pagingTop
+        searchTop
+        searchBottom={false}
+        barReverse
+      />
+    </ReportHeader>
   );
 };
 

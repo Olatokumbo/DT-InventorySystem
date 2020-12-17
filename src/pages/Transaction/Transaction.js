@@ -47,6 +47,10 @@ const Transaction = () => {
     await axios
       .post("http://localhost:7000/transactions/search", {
         machineNumber,
+      }, {
+        headers: {
+          "Authorization" : process.env.REACT_APP_TOKEN
+        }
       })
       .then((received) => {
         const { data } = received;
@@ -86,6 +90,10 @@ const Transaction = () => {
         date: currentDate,
         machineNumber,
         logFlag: 1
+      },{
+        headers: {
+          "Authorization" : process.env.REACT_APP_TOKEN
+        }
       })
       .then((data) => {
         console.log(data);
@@ -104,6 +112,10 @@ const Transaction = () => {
         date: currentDate,
         machineNumber,
         logFlag: 2
+      }, {
+        headers: {
+          "Authorization" : process.env.REACT_APP_TOKEN
+        }
       })
       .then((data) => {
         console.log(data);

@@ -76,6 +76,10 @@ const Request = () => {
         message,
         startDate,
         endDate,
+      }, {
+        headers: {
+          "Authorization" : process.env.REACT_APP_TOKEN
+        }
       })
       .then((data) => {
         console.log(data);

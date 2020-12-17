@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database.js");
 const jwt = require("jsonwebtoken");
+const auth = require("../middlewares/auth");
 require("dotenv").config();
 
-router.get("/expired", (req, res) => {
+router.get("/expired", auth, (req, res) => {
   jwt.verify(req.token, process.env.SECRET_KEY, (err, authData) => {
     if (err) {
       res.sendStatus(403);
@@ -21,7 +22,7 @@ router.get("/expired", (req, res) => {
 });
 
 
-router.get("/out", (req, res) => {
+router.get("/out", auth, (req, res) => {
   jwt.verify(req.token, process.env.SECRET_KEY, (err, authData) => {
     if (err) {
       res.sendStatus(403);

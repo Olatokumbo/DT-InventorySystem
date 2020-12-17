@@ -37,7 +37,11 @@ const AssetInfo = ({
   const [moveable, setMoveable] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:7000/asset/${assetId}`).then((received) => {
+    axios.get(`http://localhost:7000/asset/${assetId}`, {
+      headers: {
+        "Authorization": process.env.REACT_APP_TOKEN
+      }
+    }).then((received) => {
       console.log(received.data[0]);
       setUid(received.data[0].uid);
       setMachineType(received.data[0].machineType);
@@ -59,7 +63,11 @@ const AssetInfo = ({
 
   const deleteAsset = async (uid) => {
     axios
-      .post(`http://localhost:7000/asset/delete/${uid}`)
+      .post(`http://localhost:7000/asset/delete/${uid}`, {
+        headers: {
+          "Authorization": process.env.REACT_APP_TOKEN
+        }
+      })
       .then(() => {
         // console.log(result);
         alert("Asset has been deleted from the Inventory");
@@ -85,6 +93,10 @@ const AssetInfo = ({
         location,
         poNumber,
         moveable,
+      },{
+        headers: {
+          "Authorization": process.env.REACT_APP_TOKEN
+        }
       })
       .then(() => {
         //   console.log(result);
