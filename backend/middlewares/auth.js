@@ -1,25 +1,24 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const auth = (req, res, next) =>{
-    const token = 
-    req.body.token ||
-    req.query.token ||
-    req.headers['x-access-token'] ||
-    req.cookies.token;
+// Verify Token
+function auth(req, res, next) {
+  // Get auth header value
+  const bearerHeader = req.headers['authorization'];
+  // Check if bearer is undefined
+  if(typeof bearerHeader !== 'undefined') {
+    // Split at the space
+    const bearer = bearerHeader.split(' ');
+    // Get token from array
+    const bearerToken = bearer[1];
+    // Set the token
+    req.token = bearerToken;
+    // Next middleware
+    next();
+  } else {
+    // Forbidden
+    res.sendStatus(403);
+  }
 
-if (!token) {
-  res.status(401).send('Unauthorized: No token provided');
-} else {
-  jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
-    if (err) {
-      res.status(401).send('Unauthorized: Invalid token');
-    } else {
-      req.username = decoded.username;
-      next();
-    }
-  });
 }
-}
-
 module.exports = auth;
