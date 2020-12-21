@@ -8,26 +8,34 @@ import axios from "axios";
 const RequestCard = ({ data, removeCard }) => {
   const approve = (machineNumber, startDate, endDate, id) => {
     console.log(machineNumber)
-    axios.post("http://localhost:7000/requests/approve", {
+    axios.post("http://127.0.0.1:7000/requests/approve", {
       machineNumber,
       startDate,
       endDate
+    }, {
+      headers: {
+        "Authorization": process.env.REACT_APP_TOKEN
+      }
     }).then(() => {
       // console.log(data);
       // window.location.reload()
       removeCard(data.id);
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     });
   };
   const deny = (machineNumber, id) => {
-    axios.post("http://localhost:7000/requests/deny", {
+    axios.post("http://127.0.0.1:7000/requests/deny", {
       machineNumber
+    }, {
+      headers: {
+        "Authorization": process.env.REACT_APP_TOKEN
+      }
     }).then((data) => {
       console.log(data)
       // window.location.reload()
       removeCard(id);
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     });
   };
@@ -61,7 +69,7 @@ const RequestCard = ({ data, removeCard }) => {
             size="small"
             variant="contained"
             color="primary"
-            onClick={ () =>deny(data.machineNumber, data.id)}
+            onClick={() => deny(data.machineNumber, data.id)}
           >
             <CloseIcon />
           </Button>
@@ -70,7 +78,7 @@ const RequestCard = ({ data, removeCard }) => {
             size="small"
             variant="contained"
             color="secondary"
-            onClick={ () =>approve(data.machineNumber, data.startDate, data.endDate, data.id)}
+            onClick={() => approve(data.machineNumber, data.startDate, data.endDate, data.id)}
           >
             <CheckIcon />
           </Button>

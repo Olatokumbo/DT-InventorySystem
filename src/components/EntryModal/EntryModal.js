@@ -7,8 +7,8 @@ import {
   TextField,
   Button,
   Typography,
-FormControlLabel,
-Switch
+  FormControlLabel,
+  Switch
 } from "@material-ui/core";
 import axios from "axios";
 import style from "./EntryModal.module.css";
@@ -29,14 +29,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EntryModal = ({ modalState, closeModal}) => {
+const EntryModal = ({ modalState, closeModal }) => {
   const classes = useStyles();
   const [machineType, setMachineType] = useState("");
   const [makeAndModel, setMakeAndModel] = useState("");
   const [serviceTag, setServiceTag] = useState("");
   const [machineNumber, setMachineNumber] = useState("");
-  const [deliveryDate, setDeliveryDate] = useState(""); 
-  const [resourceAccount, setResourceAccount] = useState(""); 
+  const [deliveryDate, setDeliveryDate] = useState("");
+  const [resourceAccount, setResourceAccount] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const [deploymentDate, setDeploymentDate] = useState("");
   const [businessUnit, setBusinessUnit] = useState("");
@@ -51,24 +51,29 @@ const EntryModal = ({ modalState, closeModal}) => {
   const AddEntry = (e) => {
     e.preventDefault();
     handleClose();
-    axios.post("http://localhost:7000/add", {
-    machineType, 
-    makeAndModel, 
-    serviceTag, 
-    machineNumber, 
-    deliveryDate, 
-    resourceAccount, 
-    currentUser, 
-    deploymentDate, 
-    businessUnit, 
-    location, 
-    poNumber,
-    moveable
-    }).then((result)=>{
-      console.log(result)
-    }).catch((err)=>{
-      console.log(err)
-    })
+    axios.post("http://127.0.0.1:7000/add", {
+      machineType,
+      makeAndModel,
+      serviceTag,
+      machineNumber,
+      deliveryDate,
+      resourceAccount,
+      currentUser,
+      deploymentDate,
+      businessUnit,
+      location,
+      poNumber,
+      moveable
+    },
+      {
+        headers: {
+          "Authorization": process.env.REACT_APP_TOKEN
+        }
+      }).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        console.log(err)
+      })
 
   };
 
@@ -165,16 +170,16 @@ const EntryModal = ({ modalState, closeModal}) => {
                 }}
               />
               <TextField
-              variant="outlined"
-              label="Current User"
-              size="small"
-              className={style.input}
-              value={currentUser}
-              onChange={(e) => setCurrentUser(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+                variant="outlined"
+                label="Current User"
+                size="small"
+                className={style.input}
+                value={currentUser}
+                onChange={(e) => setCurrentUser(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
               <TextField
                 variant="outlined"
                 label="Deployment Date"
@@ -220,17 +225,17 @@ const EntryModal = ({ modalState, closeModal}) => {
                   shrink: true,
                 }}
               />
-            <FormControlLabel
-            control={
-              <Switch
-                name="Moveable"
-                color="primary"
-                checked={moveable}
-            onChange={handleChange}
+              <FormControlLabel
+                control={
+                  <Switch
+                    name="Moveable"
+                    color="primary"
+                    checked={moveable}
+                    onChange={handleChange}
+                  />
+                }
+                label="Moveable"
               />
-            }
-            label="Moveable"
-          />
               <Button
                 type="submit"
                 variant="contained"

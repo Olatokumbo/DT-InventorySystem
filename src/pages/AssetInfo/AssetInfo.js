@@ -37,7 +37,7 @@ const AssetInfo = ({
   const [moveable, setMoveable] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:7000/asset/${assetId}`, {
+    axios.get(`http://127.0.0.1:7000/asset/${assetId}`, {
       headers: {
         "Authorization": process.env.REACT_APP_TOKEN
       }

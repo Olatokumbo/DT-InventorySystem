@@ -97,8 +97,9 @@ const Home = () => {
     setModalState(!value);
   }
   useEffect(() => {
+    console.log(process.env.REACT_APP_TOKEN);
     const getData = async ()=>{
-      await axios.get("http://localhost:7000",{
+      await axios.get("http://127.0.0.1:7000",{
         headers: {
           "Authorization" : process.env.REACT_APP_TOKEN
         }

@@ -45,7 +45,7 @@ const Transaction = () => {
     setMachineNumber(machineNumber);
     reset();
     await axios
-      .post("http://localhost:7000/transactions/search", {
+      .post("http://127.0.0.1:7000/transactions/search", {
         machineNumber,
       }, {
         headers: {
@@ -85,7 +85,7 @@ const Transaction = () => {
 
   const signin = async () => {
     await axios
-      .post("http://localhost:7000/transactions/validate/in", {
+      .post("http://127.0.0.1:7000/transactions/validate/in", {
         currentUser,
         date: currentDate,
         machineNumber,
@@ -107,7 +107,7 @@ const Transaction = () => {
   };
   const signout = async () => {
     await axios
-      .post("http://localhost:7000/transactions/validate/out", {
+      .post("http://127.0.0.1:7000/transactions/validate/out", {
         currentUser,
         date: currentDate,
         machineNumber,

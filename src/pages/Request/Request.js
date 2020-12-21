@@ -23,9 +23,13 @@ const Request = () => {
   const [message, setMessage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [buttonState, setButtonState] = useState(false)
   useEffect(() => {
     axios
-      .get("http://localhost:7000/requests/machineNumbers")
+      .get("http://127.0.0.1:7000/requests/machineNumbers", {
+        headers: {
+          "Authorization": process.env.REACT_APP_TOKEN
+        }})
       .then((response) => {
         const modifiedData = response.data.map((data)=>data.machineNumber);
         setMachineNumberList(modifiedData)
@@ -63,9 +67,11 @@ const Request = () => {
     setMessage("");
     setStartDate(new Date());
     setEndDate(new Date());
+    setButtonState(false)
   };
   const submit = async (e) => {
     console.log("submit");
+    setButtonState(true);
     e.preventDefault();
     await axios
       .post("http://localhost:7000/requests", {
@@ -196,7 +202,7 @@ const Request = () => {
                 !!message &&
                 !!startDate &&
                 !!endDate
-              )
+              ) || (buttonState)
             }
           >
             Submit

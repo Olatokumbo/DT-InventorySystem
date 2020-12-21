@@ -13,11 +13,11 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", auth, mailer, (req, res) => {
-  jwt.verify(req.token, process.env.SECRET_KEY, (err, authData) => {
-    if (err) {
-      res.sendStatus(403);
-    } else {
+router.post("/", mailer, (req, res) => {
+  // jwt.verify(req.token, process.env.SECRET_KEY, (err, authData) => {
+  //   if (err) {
+  //     res.sendStatus(403);
+  //   } else {
       // console.log(req.body);
       const {
         firstName,
@@ -45,8 +45,8 @@ router.post("/", auth, mailer, (req, res) => {
           res.status(200).json(data);
         }
       );
-    }
-  });
+    // }
+  // });
 
   // console.log(query);
 });

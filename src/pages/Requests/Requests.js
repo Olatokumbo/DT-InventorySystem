@@ -6,7 +6,7 @@ const Requests = () => {
   const [requests, setRequests] = useState([]);
   useEffect(() => {
     const getRequests = async () => {
-      await axios.get("http://localhost:7000/requests", {
+      await axios.get("http://127.0.0.1:7000/requests", {
         headers: {
           "Authorization" : process.env.REACT_APP_TOKEN
         }

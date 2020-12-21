@@ -186,6 +186,6 @@ app.post("/asset/delete/:assetId", auth , (req, res) => {
 
 });
 
-app.listen(port, (req, res) => {
+app.listen(port, '127.0.0.1', (req, res) => {
   console.log("Server is running at port", port);
 });

@@ -62,7 +62,7 @@ const AssetOffsite = () => {
   useEffect(() => {
     const getData = async () => {
       await axios
-        .get("http://localhost:7000/report/out", {
+        .get("http://127.0.0.1:7000/report/out", {
           headers: {
             Authorization: process.env.REACT_APP_TOKEN,
           },
