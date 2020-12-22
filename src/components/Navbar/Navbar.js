@@ -161,12 +161,12 @@ const Navbar = (props) => {
         </div>
         <Divider />
         <List>
-          <Link to="/home">
+          <Link to="/inventory">
             <ListItem button>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary={"Home"} />
+              <ListItemText primary={"Inventory"} />
             </ListItem>
           </Link>
           <Link to="/requests">

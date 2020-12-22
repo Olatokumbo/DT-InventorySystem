@@ -1,0 +1,27 @@
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 9rem 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuCard{
+    height: 10rem;
+    width: 15rem;
+    margin: 0.5rem;
+}
+.cardContent{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icon{
+   font-size: 5rem !important;
+   color: rgb(65, 148, 168);
+}
+
+.title{
+    font-size: 1.2rem;
+}

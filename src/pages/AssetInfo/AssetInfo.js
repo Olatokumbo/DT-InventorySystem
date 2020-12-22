@@ -71,7 +71,7 @@ const AssetInfo = ({
       .then(() => {
         // console.log(result);
         alert("Asset has been deleted from the Inventory");
-        history.push("/home");
+        history.push("/inventory");
       })
       .catch((err) => {
         console.log(err);
@@ -111,7 +111,7 @@ const AssetInfo = ({
     <div className={style.assetInfo}>
       <div className={style.header}>
         <div className={style.main}>
-          <IconButton size="small" onClick={()=>history.push("/home")}>
+          <IconButton size="small" onClick={()=>history.push("/inventory")}>
             <ArrowBackIcon />
           </IconButton>
           <h4>Asset Info</h4>

@@ -7,3 +7,4 @@ export { default as AssetInfo } from "./AssetInfo/AssetInfo";
 export { default as ExpiredRequests } from "./ExpiredRequests/ExpiredRequests";
 export { default as AssetsOffsite } from "./AssetsOffsite/AssetOffsite";
 export { default as Loading } from "./Loading/Loading";
+export { default as Menu } from "./Menu/Menu";
